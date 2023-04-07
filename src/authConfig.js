@@ -15,7 +15,7 @@ export const identityProvider = {
     tenant: {
         name: 'garbacp'
     },
-    usePingOne: true,
+    usePingOne: localStorage.getItem('usePingOne') === 'true',
     ping: {
         clientId: "215f6902-077e-4fd4-894b-a1167ccf66be",
         policiesNames: {

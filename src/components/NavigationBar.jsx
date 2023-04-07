@@ -2,7 +2,8 @@ import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/
 
 import { Nav, Navbar, Button, Dropdown, DropdownButton} from "react-bootstrap";
 
-import { loginRequest, b2cPolicies } from "../authConfig";
+import { loginRequest } from "../authConfig";
+import { IdPSelect } from "./IdPSelect";
 
 export const NavigationBar = () => {
 
@@ -20,11 +21,11 @@ export const NavigationBar = () => {
     return (
         <>
             <Navbar bg="primary" variant="dark">
-                <a className="navbar-brand" href="/">Microsoft identity platform</a>
+                <a className="navbar-brand" href="/">PingOne - Azure B2C Integration</a>
+                <IdPSelect/>
                 <AuthenticatedTemplate>
                     <Nav.Link as={Button} href="/hello">HelloAPI</Nav.Link>
                     <div className="ml-auto">
-                        <Button variant="info" onClick={() => instance.loginPopup(b2cPolicies.authorities.editProfile)} className="ml-auto">Edit Profile</Button>
                         <DropdownButton variant="warning" className="ml-auto" drop="left" title="Sign Out">
                             <Dropdown.Item as="button" onClick={() => instance.logoutPopup({ postLogoutRedirectUri: "/", mainWindowRedirectUri: "/" })}>Sign out using Popup</Dropdown.Item>
                             <Dropdown.Item as="button" onClick={() => instance.logoutRedirect({ postLogoutRedirectUri: "/" })}>Sign out using Redirect</Dropdown.Item>
